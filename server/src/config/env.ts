@@ -8,7 +8,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
 const envSchema = z.object({
   DATABASE_URL: z.string().min(1),
-  REDIS_URL: z.string().default('redis://localhost:6379'),
+  REDIS_URL: z.string().default(''),
   JWT_SECRET: z.string().min(1).default('change-me-in-production-please'),
   ATTOM_API_KEY: z.string().default(''),
   MAPBOX_TOKEN: z.string().default(''),

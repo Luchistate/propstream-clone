@@ -1,4 +1,4 @@
-import { redis } from '../config/redis.js';
+import { getRedis } from '../config/redis.js';
 
 // TTL constants in seconds
 export const TTL = {
@@ -10,18 +10,36 @@ export const TTL = {
 } as const;
 
 export async function cacheGet<T>(key: string): Promise<T | null> {
-  const data = await redis.get(key);
-  if (!data) return null;
-  return JSON.parse(data) as T;
+  try {
+    const redis = await getRedis();
+    if (!redis) return null;
+    const data = await redis.get(key);
+    if (!data) return null;
+    return JSON.parse(data) as T;
+  } catch {
+    return null;
+  }
 }
 
 export async function cacheSet(key: string, value: any, ttlSeconds: number): Promise<void> {
-  await redis.setex(key, ttlSeconds, JSON.stringify(value));
+  try {
+    const redis = await getRedis();
+    if (!redis) return;
+    await redis.setex(key, ttlSeconds, JSON.stringify(value));
+  } catch {
+    // Cache write failure is non-fatal
+  }
 }
 
 export async function cacheInvalidate(pattern: string): Promise<void> {
-  const keys = await redis.keys(pattern);
-  if (keys.length > 0) {
-    await redis.del(...keys);
+  try {
+    const redis = await getRedis();
+    if (!redis) return;
+    const keys = await redis.keys(pattern);
+    if (keys.length > 0) {
+      await redis.del(...keys);
+    }
+  } catch {
+    // Cache invalidation failure is non-fatal
   }
 }
