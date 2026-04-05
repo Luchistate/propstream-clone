@@ -1,0 +1,135 @@
+.property-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+}
+
+.list-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.list-items {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.property-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.property-row:hover {
+  background: var(--gray-50);
+}
+
+.property-row.selected {
+  background: #eff6ff;
+}
+
+.row-checkbox {
+  accent-color: var(--primary);
+  flex-shrink: 0;
+}
+
+.row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.row-address {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.row-address svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.row-location {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-top: 2px;
+  padding-left: 20px;
+}
+
+.row-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-end;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.detail-type {
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
+.row-value {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--success);
+  min-width: 80px;
+  justify-content: flex-end;
+}
+
+.row-badge-distressed {
+  background: #fef2f2;
+  color: var(--danger);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.list-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.page-info {
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+.empty-list {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--gray-400);
+}
